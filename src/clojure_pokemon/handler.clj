@@ -5,9 +5,9 @@
   (:require [compojure.handler :as handler]
             [compojure.core :refer :all]
             [ring.middleware.json :as middleware]
+            [ring.adapter.jetty :as jetty]
             [clojure.java.io :as io]
-            [compojure.route :as route]
-            [org.httpkit.server :refer [run-server]]))
+            [compojure.route :as route]))
 
 (defn get-all-pokemons []
   (parse-string (slurp (io/resource "data/pokemons.json"))))
@@ -31,7 +31,11 @@
       (GET "/" [] (handle-get-pokemon id))))))
   (route/not-found "Not found"))
 
-(defn -main []
-  (-> (run-server app-routes {:port 5000})
+(def app
+  (-> (handler/api app-routes)
     (middleware/wrap-json-body)
+    (middleware/wrap-json-params)
     (middleware/wrap-json-response)))
+
+(defn -main [& args]
+  (jetty/run-jetty app {:port 3000}))
