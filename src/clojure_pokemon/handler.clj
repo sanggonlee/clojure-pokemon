@@ -1,5 +1,4 @@
 (ns clojure-pokemon.handler
-  (:import com.mchange.v2.c3p0.ComboPooledDataSource)
   (:use compojure.core)
   (:use cheshire.core)
   (:use ring.util.response)
