@@ -10,4 +10,5 @@
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler clojure-pokemon.handler/app}
   :profiles
+  :main clojure-pokemon.handler
   {:dev {:dependencies [[ring/ring-mock "0.3.0"]]}})
