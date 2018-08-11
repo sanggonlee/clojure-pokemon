@@ -9,6 +9,6 @@
                  [javax.servlet/servlet-api "2.5"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler clojure-pokemon.handler/app}
-  :profiles
-  :main clojure-pokemon.handler
-  {:dev {:dependencies [[ring/ring-mock "0.3.0"]]}})
+  :main clojure-pokemon.handler/app
+  :profiles {:dev {:dependencies [[ring/ring-mock "0.3.0"]]}}
+)
