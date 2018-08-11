@@ -5,7 +5,8 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [compojure "1.5.1"]
                  [ring/ring-json "0.1.2"]
-                 [cheshire "4.0.3"]]
+                 [cheshire "4.0.3"]
+                 [javax.servlet/servlet-api "2.5"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler clojure-pokemon.handler/app}
   :profiles
