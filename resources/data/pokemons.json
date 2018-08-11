@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "name": "pikachee",
+    "type": "normal",
+    "attack": 10,
+    "hp": 40
+  }
+]
