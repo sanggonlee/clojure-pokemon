@@ -30,6 +30,4 @@
   (route/not-found "Not found"))
 
 (def app
-  (-> (handler/api app-routes)
-    (middleware/wrap-json-body)
-    (middleware/wrap-json-response)))
+  (middleware/wrap-json-response (handler/api app-routes)))
