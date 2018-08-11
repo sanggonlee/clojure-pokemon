@@ -3,9 +3,11 @@
   (:use cheshire.core)
   (:use ring.util.response)
   (:require [compojure.handler :as handler]
+            [compojure.core :refer :all]
             [ring.middleware.json :as middleware]
             [clojure.java.io :as io]
-            [compojure.route :as route]))
+            [compojure.route :as route]
+            [org.httpkit.server :refer [run-server]]))
 
 (defn get-all-pokemons []
   (parse-string (slurp (io/resource "data/pokemons.json"))))
@@ -29,5 +31,7 @@
       (GET "/" [] (handle-get-pokemon id))))))
   (route/not-found "Not found"))
 
-(def app
-  (middleware/wrap-json-response (handler/api app-routes)))
+(defn -main []
+  (-> (run-server app-routes {:port 5000})
+    (middleware/wrap-json-body)
+    (middleware/wrap-json-response)))
