@@ -38,4 +38,4 @@
     (middleware/wrap-json-response)))
 
 (defn -main [& args]
-  (jetty/run-jetty app {:port (System/getenv "PORT")}))
+  (jetty/run-jetty app {:port (Integer/parseInt (re-find #"\A-?\d+" (System/getenv "PORT")))}))
